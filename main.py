@@ -2,11 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 from finder import find
 import re
+import sys
 
-
-URL = "https://www.zonagatos.com"
-
-def get_soup():    
+def get_soup(URL):    
     reqs = requests.get(URL)
     soup = BeautifulSoup(reqs.text,'html.parser')
     return soup
@@ -30,7 +28,8 @@ def search_emails(soup):
     return content
 
 if __name__=="__main__":
-    soup = get_soup();
+    URL = sys.argv[1];
+    soup = get_soup(URL);
 
     print("-" * 10, "URLS", "-" * 10)
     print(search_urls(soup));
